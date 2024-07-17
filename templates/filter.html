@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Filter Text
+{% endblock title %}
+
+
+{% block content %}
+<p>{{ some_text | upper }}</p>
+<p>{{ some_text | lower }}</p>
+<p>{{ some_text | title }}</p>
+<p>{{ some_text | rev_string }}</p>
+<p>{{ some_text | repeat(5) }}</p>
+<p>{{ some_text | replace('l', 'L') }}</p>
+
+{% endblock content %}
+

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}My Flask App {% endblock title %}
+
+{% block content %}
+    <h1> Hello World </h1>
+    <ul>
+        {% for i in my_list %}
+        <li> {{ i }} </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('filter') }}">Filter</a>
+{% endblock content %}
+

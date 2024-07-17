@@ -1,0 +1,78 @@
+{% extends 'base.html' %} {% block title%}Hello {% endblock title%} {% block
+content %}
+<h2> Login Form </h2>
+<form method="POST" action="{{ url_for('index') }}">
+  <input type="text" name="username" placeholder="username" /><br />
+  <input type="password" name="password" placeholder="password" /><br />
+  <input type="submit" value"login">
+</form>
+
+<h2>File Upload (excel / txt supported)</h2>
+<form
+  method="POST"
+  action="{{ url_for('file_upload') }}"
+  enctype="multipart/form-data"
+>
+  <input
+    type="file"
+    name="file"
+    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, text/plain"
+  /><br />
+  <input type="submit" value"login">
+</form>
+
+<h2>Converts to CSV </h2>
+<p> downloads to the download/ directory </p>
+<form
+  method="POST"
+  action="{{ url_for('convert_csv') }}"
+  enctype="multipart/form-data"
+>
+  <input
+    type="file"
+    name="file"
+    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  /><br />
+  <input type="submit" value"login">
+</form>
+
+<h2>Converts to CSV</h2>
+<p>download to specific folder</p>
+<form
+  method="POST"
+  action="{{ url_for('convert_csv2') }}"
+  enctype="multipart/form-data"
+>
+  <input
+    type="file"
+    name="file"
+    accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  /><br />
+  <input type="submit" value"login">
+</form>
+
+
+
+<h2> JavaScript JSON Request </h2>
+<button id = "post_button">Send POST </button> 
+
+<script type='text/javascript'>
+    const postButton = document.getElementById('post_button');
+    const jsonData = {name: 'Mike', greeting: 'Heyyy'}
+
+    postButton.addEventListener('click', () => {
+        fetch('{{ url_for('handle_post_req') }}', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+        }, 
+        body: JSON.stringify(jsonData)
+    })
+        .then( response => response.json())
+        .then( data => console.log('Success', data))
+        .catch(error => {
+            console.error('Error', error)
+        });
+    });
+</script>
+{% endblock content %}
